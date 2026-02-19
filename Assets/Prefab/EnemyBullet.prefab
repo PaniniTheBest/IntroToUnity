@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: -5
   lifetime: 5
+  damageValue: 2
 --- !u!50 &-7907409595572120257
 Rigidbody2D:
   serializedVersion: 5

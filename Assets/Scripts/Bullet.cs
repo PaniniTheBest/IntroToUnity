@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
     private float speed = 3.0f;
     [SerializeField]
     private float lifetime = 5.0f;
+    [SerializeField]
+    private int damageValue = 2;
 
     private Rigidbody2D rb;
     private void Start()
@@ -18,4 +20,7 @@ public class Bullet : MonoBehaviour
         // lifetime has passed
         Destroy(this.gameObject, lifetime);
     }
+
+    public int GetDamageValue()
+        { return damageValue; }
 }
