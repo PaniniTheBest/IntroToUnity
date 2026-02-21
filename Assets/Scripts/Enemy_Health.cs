@@ -1,29 +1,26 @@
 using System.Collections;
-using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
     private float maxHealthPoints = 5.0f;
     //[SerializeField]
-    private float healthPoints = 5.0f;
-    
+    private float healthPoints = 5.0f;  
     [SerializeField]
     private int pointValue = 1;
 
     [Header ("Damage Indicator")]
     [SerializeField] private float timeInterval_Color = 0.15f;
     [SerializeField] private Color damageColor = Color.red;
-
-    [SerializeField] private EnemyUI_Health healthBarUI;
+    [Header("HP Slider")]
+    [SerializeField] private Slider healthSlider;
 
     private void Awake()
     {
         healthPoints= maxHealthPoints;
-        healthBarUI = GetComponentInChildren<EnemyUI_Health>(); 
-        healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
+        UpdateHealthBar(healthPoints, maxHealthPoints);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,18 +40,14 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged 
         {
             healthPoints -= bulletComponent.GetDamageValue();
-
-            StartCoroutine(ColorChangeRed(damageColor,timeInterval_Color)); //Damage Indicator       
+            StartCoroutine(ColorChangeRed(damageColor,timeInterval_Color)); //Damage Indicator                     
+            UpdateHealthBar(healthPoints, maxHealthPoints);
             Destroy(bulletComponent.gameObject);
-            
-            healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
-
             Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
         }
 
         if (healthPoints <= 0)//Death condition        
             ObjectDeath();
-       
     }
 
     private void ObjectDeath()
@@ -68,5 +61,9 @@ public class EnemyHealth : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = color;
         yield return new WaitForSeconds(timeInterval_Color);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+    private void UpdateHealthBar(float currentHealth, float maxHealth)//HP Bar
+    {
+        healthSlider.value = currentHealth / maxHealth;
     }
 }

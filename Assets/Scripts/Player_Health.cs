@@ -14,14 +14,12 @@ public class Player_Health : MonoBehaviour
     [Header ("Damage Indicator")]
     [SerializeField] private float timeInterval_Color = 0.15f;
     [SerializeField] private Color damageColor = Color.red;
-    private SceneLoader sceneloader;
+    [SerializeField] private SceneLoader sceneloader;
     //[SerializeField] private UI_Health healthBarUI;
 
     private void Awake()
     {
         healthPoints = maxHealthPoints;
-        //healthBarUI = GetComponentInChildren<UI_Health>(); 
-        //healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
