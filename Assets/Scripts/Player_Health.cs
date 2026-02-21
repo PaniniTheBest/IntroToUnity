@@ -19,7 +19,7 @@ public class Player_Health : MonoBehaviour
 
     private void Awake()
     {
-        //healthPoints = maxHealthPoints;
+        healthPoints = maxHealthPoints;
         //healthBarUI = GetComponentInChildren<UI_Health>(); 
         //healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
     }

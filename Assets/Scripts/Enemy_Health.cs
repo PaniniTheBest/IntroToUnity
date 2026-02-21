@@ -17,12 +17,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float timeInterval_Color = 0.15f;
     [SerializeField] private Color damageColor = Color.red;
 
-    [SerializeField] private UI_Health healthBarUI;
+    [SerializeField] private EnemyUI_Health healthBarUI;
 
     private void Awake()
     {
         healthPoints= maxHealthPoints;
-        healthBarUI = GetComponentInChildren<UI_Health>(); 
+        healthBarUI = GetComponentInChildren<EnemyUI_Health>(); 
         healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,6 +43,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged 
         {
             healthPoints -= bulletComponent.GetDamageValue();
+
             StartCoroutine(ColorChangeRed(damageColor,timeInterval_Color)); //Damage Indicator       
             Destroy(bulletComponent.gameObject);
             

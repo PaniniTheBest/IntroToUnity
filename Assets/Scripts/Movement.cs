@@ -5,11 +5,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float movementSpeed = 1.0f;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         float xMovement = Input.GetAxis("Horizontal");
@@ -18,7 +13,8 @@ public class Movement : MonoBehaviour
         Vector3 movementVector = new Vector3(xMovement, yMovement, 0);
         transform.position += movementVector * movementSpeed * Time.deltaTime;
     }
-
+//Kept as for future reference
+/*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log($"Collision enter with {collision.gameObject.name}");
@@ -48,4 +44,5 @@ public class Movement : MonoBehaviour
     {
         //Debug.Log($"Trigger exit with {collision.gameObject.name}");
     }
+*/
 }

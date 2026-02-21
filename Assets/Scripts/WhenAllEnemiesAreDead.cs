@@ -7,6 +7,7 @@ public class WhenAllEnemiesAreDead : MonoBehaviour
 
     [SerializeField] private int endCondition = 0;
     [SerializeField] private int winMenuIndex = 0;
+    //[SerializeField] private int enemyLayer = 6;
     //private bool winCondition = false;
     void Update()
     {
@@ -19,4 +20,5 @@ public class WhenAllEnemiesAreDead : MonoBehaviour
     }
     //public bool getBoolWinCon()
     //{ return winCondition; }
+
 }
