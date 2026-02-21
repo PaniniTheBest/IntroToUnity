@@ -59,6 +59,7 @@ public class Health : MonoBehaviour
             ScoreManager.instance.AddPoint(pointValue);
             ArraySpawner.instance.eraseCount();
         }
+
         else if (layerNumber == 7) //Player Layer
         sceneloader.LoadSceneIndex(2);
 
