@@ -7,13 +7,13 @@ public class EnemyHP_UI : MonoBehaviour
     private float currentHP = 0.0f;
     private float maxHP = 0.0f;
 
-    private void Awake()
-    {
-        this.gameObject.TryGetComponent<Health>(out Health info_HP);
-        currentHP = info_HP.GetCurrentHP();
-        maxHP = info_HP.GetMaxHP();
-        UpdateHealthBar(currentHP, maxHP);
-    }
+    //private void Awake()
+    //{
+    //    this.gameObject.TryGetComponent<Health>(out Health info_HP);
+    //    currentHP = info_HP.GetCurrentHP();
+    //    maxHP = info_HP.GetMaxHP();
+    //    UpdateHealthBar(currentHP, maxHP);
+    //}
     private void Update()
     {
         this.gameObject.TryGetComponent<Health>(out Health info_HP);
