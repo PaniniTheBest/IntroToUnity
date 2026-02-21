@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float lifetime = 5.0f;
     [SerializeField]
-    private int damageValue = 2;
+    private float damageValue = 2.0f;
 
     private Rigidbody2D rb;
     private void Start()
@@ -21,6 +21,6 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject, lifetime);
     }
 
-    public int GetDamageValue()
+    public float GetDamageValue()
         { return damageValue; }
 }

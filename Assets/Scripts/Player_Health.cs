@@ -3,16 +3,26 @@ using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public class Player_Health : MonoBehaviour
 {
+    
     [SerializeField]
-    private int healthPoints = 5;
-    [SerializeField]
-    private int pointValue = 1;
+    private float maxHealthPoints = 5.0f;
+    //[SerializeField]
+    private float healthPoints = 5.0f;
+
     [Header ("Damage Indicator")]
     [SerializeField] private float timeInterval_Color = 0.15f;
     [SerializeField] private Color damageColor = Color.red;
+    private SceneLoader sceneloader;
+    //[SerializeField] private UI_Health healthBarUI;
 
+    private void Awake()
+    {
+        //healthPoints = maxHealthPoints;
+        //healthBarUI = GetComponentInChildren<UI_Health>(); 
+        //healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // We need to make sure that we will only destroy our gameobject
@@ -32,36 +42,28 @@ public class Health : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged 
         {
             healthPoints -= bulletComponent.GetDamageValue();
-
-            StartCoroutine(ColorChangeRed(damageColor,timeInterval_Color));//Damage Indicator
-
+            StartCoroutine(ColorChange(damageColor,timeInterval_Color)); //Damage Indicator       
             Destroy(bulletComponent.gameObject);
+            
+            //healthBarUI.UpdateHealthBar(healthPoints, maxHealthPoints);
+
             Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
         }
 
-        if (healthPoints <= 0)//Death condition
-        {
+        if (healthPoints <= 0)//Death condition        
             ObjectDeath();
-        }
+       
     }
 
     private void ObjectDeath()
     {
         Destroy(this.gameObject);
-
-        if (this.gameObject.layer == 6)//Enemy Points
-            ScoreManager.instance.AddPoint(pointValue);
-
-        if(this.gameObject.layer == 7)//Player Gameover Screen
-            SceneManager.LoadScene(2);
-        
+        sceneloader.LoadSceneIndex(2);    
     }
-
-    private IEnumerator ColorChangeRed(Color color, float timeInterval_Color)
+    private IEnumerator ColorChange(Color color, float timeInterval_Color)//Damage Indicator
     {
         gameObject.GetComponent<SpriteRenderer>().color = color;
         yield return new WaitForSeconds(timeInterval_Color);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-
     }
 }
