@@ -38,17 +38,18 @@ public class Health : MonoBehaviour
         }*/
 
         // Method 2 (preferred) : Checking for component
-        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged 
-        {
-            healthPoints -= bulletComponent.GetDamageValue();
-            StartCoroutine(ColorChange(damageColor,timeInterval_Color)); //Damage Indicator                     
-            //UpdateHealthBar(healthPoints, maxHealthPoints);
-            Destroy(bulletComponent.gameObject);
-            Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
-        }
-
+        if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged         
+            HP_Damaged(bulletComponent);
+        
         if (healthPoints <= 0)//Death condition        
             ObjectDeath();
+    }
+    private void HP_Damaged(Bullet bulletComponent)
+    {
+        healthPoints -= bulletComponent.GetDamageValue();
+        StartCoroutine(ColorChange(damageColor, timeInterval_Color)); //Damage Indicator                     
+        Destroy(bulletComponent.gameObject);
+        Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
     }
 
     private void ObjectDeath()

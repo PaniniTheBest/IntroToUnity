@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArraySpawner : MonoBehaviour
 {
+    //[SerializeField] 
     private GameObject parentPosistion;
     [SerializeField] public GameObject[] spawnedPrefab; //Object to be spawned
     [SerializeField] private float spawnLocationDistance = 1.5f;// Essentially startingSpawnLocation + spawnLocationDistance for ONLY x position
@@ -23,12 +24,15 @@ public class ArraySpawner : MonoBehaviour
             //To spawn an object
             //Usage of vector3 and not vector2 is due to unity complaining vector2 as an Error
 
-            Instantiate(spawnedPrefab[i], parentPosistion.transform.position += new Vector3(spawnLocationDistance, 0.0f, 0.0f), parentPosistion.transform.rotation);
+            Instantiate(spawnedPrefab[i],
+                        parentPosistion.transform.position += new Vector3(spawnLocationDistance, 0.0f, 0.0f),
+                        parentPosistion.transform.rotation);
             spawnedPrefab[i].name = $"Bad Fella {i}";
-            spawnedPrefab[i].transform.parent = parentPosistion.transform;
 
-            /* Experimental code to make prefabs into a child {DOES NOT WORK}
-              game will work, the errors are just ugly looking during debug
+            /* Experimental code to make prefabs into a child of an empty object
+             *                      {DOES NOT WORK}
+             * game will continue to work with this code, the errors are just ugly 
+             * looking during debug
                                      \/  \/  \/  \/
             */
             //parentPosistion.instance.transform.SetParent(spawnedPrefab[i].transform);         
