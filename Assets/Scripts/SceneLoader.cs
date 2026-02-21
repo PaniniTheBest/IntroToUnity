@@ -11,9 +11,8 @@ public class SceneLoader : MonoBehaviour
     {
         //When all enemies have been destroyed
         //*MUST be paired with the Array spawner script
-        if (gameObject.TryGetComponent<ArraySpawner>(out ArraySpawner arraySpawnerComponent))
-            if (endCondition >= arraySpawnerComponent.spawnCount)           
-                SceneManager.LoadScene(winMenuIndex);
+        if (gameObject.TryGetComponent<ArraySpawner>(out ArraySpawner arraySpawnerComponent) && endCondition >= arraySpawnerComponent.getSpawnCount())
+            SceneManager.LoadScene(winMenuIndex);
     }
     public void LoadSceneIndex(int index)
     {

@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 7304627028220604268}
   - component: {fileID: 207488293890153455}
   - component: {fileID: 1756658319843872256}
-  - component: {fileID: 4702224118999391368}
   m_Layer: 5
   m_Name: HealthBar_UI
   m_TagString: Untagged
@@ -192,19 +191,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4702224118999391368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5645898592211163482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccaeb46a7aff3d24998962083b001b39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI_Health
-  healthSlider: {fileID: 2390125461919372952}
 --- !u!1 &6150968369384553596
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +280,7 @@ GameObject:
   - component: {fileID: 6555370124063131034}
   - component: {fileID: 4784413819895609815}
   - component: {fileID: 3540279392841761585}
+  - component: {fileID: 5605808821089855721}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -465,7 +452,7 @@ MonoBehaviour:
   pointValue: 1
   timeInterval_Color: 0.15
   damageColor: {r: 1, g: 0.12641507, b: 0.37479722, a: 1}
-  healthSlider: {fileID: 2390125461919372952}
+  sceneloader: {fileID: 0}
 --- !u!114 &3540279392841761585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +468,19 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5257339871106376352, guid: a7eb28982e612764e8483c1f093e4cea, type: 3}
   shootInterval: 3
   shootDelay: 1
+--- !u!114 &5605808821089855721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6984606916662321973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a57a6525a384964993e750a0d76482c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHP_UI
+  healthSlider: {fileID: 2390125461919372952}
 --- !u!1 &8118262700964516832
 GameObject:
   m_ObjectHideFlags: 0

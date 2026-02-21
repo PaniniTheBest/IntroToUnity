@@ -15,11 +15,12 @@ public class PlayerHealth_UI : MonoBehaviour
     }
     private void Start()
     {
-        for (int i = spawnCount; i > 0; i--)
+        for (int i = spawnedPrefab.Length-1; i > 0; i--)
         {
             //To spawn an object
             //Usage of vector3 and not vector2 is due to unity complaining vector2 as an Error
             Instantiate(spawnedPrefab[i], parentPosistion.transform.position + new Vector3(spawnLocationDistance, 0.0f, 0.0f), Quaternion.identity);
+            spawnedPrefab[i].transform.parent = parentPosistion.transform;
         }
     }
 

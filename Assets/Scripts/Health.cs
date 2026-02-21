@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     [SerializeField]
     private float maxHealthPoints = 5.0f;
@@ -10,17 +10,18 @@ public class EnemyHealth : MonoBehaviour
     private float healthPoints = 5.0f;  
     [SerializeField]
     private int pointValue = 1;
+    private int layerNumber = 0;
+
 
     [Header ("Damage Indicator")]
     [SerializeField] private float timeInterval_Color = 0.15f;
     [SerializeField] private Color damageColor = Color.red;
-    [Header("HP Slider")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private SceneLoader sceneloader;
 
     private void Awake()
     {
         healthPoints= maxHealthPoints;
-        UpdateHealthBar(healthPoints, maxHealthPoints);
+        layerNumber = this.gameObject.layer;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,8 +41,8 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bulletComponent))//Condition for getting Damaged 
         {
             healthPoints -= bulletComponent.GetDamageValue();
-            StartCoroutine(ColorChangeRed(damageColor,timeInterval_Color)); //Damage Indicator                     
-            UpdateHealthBar(healthPoints, maxHealthPoints);
+            StartCoroutine(ColorChange(damageColor,timeInterval_Color)); //Damage Indicator                     
+            //UpdateHealthBar(healthPoints, maxHealthPoints);
             Destroy(bulletComponent.gameObject);
             Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
         }
@@ -51,19 +52,26 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void ObjectDeath()
-    {     
-        ScoreManager.instance.AddPoint(pointValue);
-        ArraySpawner.instance.eraseCount();  
+    {
+        if (layerNumber == 6)//Enemy Layer
+        {
+            ScoreManager.instance.AddPoint(pointValue);
+            ArraySpawner.instance.eraseCount();
+        }
+        else if (layerNumber == 7) //Player Layer
+        sceneloader.LoadSceneIndex(2);
+
         Destroy(this.gameObject);    
     }
-    private IEnumerator ColorChangeRed(Color color, float timeInterval_Color)//Damage Indicator
+    private IEnumerator ColorChange(Color color, float timeInterval_Color)//Damage Indicator
     {
         gameObject.GetComponent<SpriteRenderer>().color = color;
         yield return new WaitForSeconds(timeInterval_Color);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
-    private void UpdateHealthBar(float currentHealth, float maxHealth)//HP Bar
-    {
-        healthSlider.value = currentHealth / maxHealth;
-    }
+
+    public float GetMaxHP()
+    { return maxHealthPoints; }
+    public float GetCurrentHP()
+    { return healthPoints; }
 }
