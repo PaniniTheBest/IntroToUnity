@@ -5,8 +5,14 @@ using UnityEngine;
 public class TransitionScreen : MonoBehaviour
 {
     [SerializeField] private float transitionScreentime = 1.0f;
-    public IEnumerator TransitionScreen_UI()
+    [SerializeField] private float timer = 0.0f;
+    [SerializeField] private SpriteRenderer transitionSprite_UI;
+
+    public void StartTransitionScreen()
+    { }
+    private IEnumerator TransitionScreen_UI()
     {
         yield return new WaitForSeconds(transitionScreentime);
+        
     }
 }

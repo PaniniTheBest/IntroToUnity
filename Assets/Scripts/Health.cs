@@ -52,6 +52,7 @@ public class Health : MonoBehaviour
         Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
     }
 
+
     private void ObjectDeath()
     {
         if (layerNumber == 6)//Enemy Layer
