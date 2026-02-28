@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager instance;
+    public static ScoreManager instance { get; private set; }
 
     public Text currentScore_Txt;
     public Text highScore_Txt;
@@ -13,7 +13,16 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;    
+        if (instance != null)
+        { 
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     private void Start()

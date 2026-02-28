@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealthPoints = 5.0f;
+    protected float maxHealthPoints = 5.0f;
     //[SerializeField]
-    private float healthPoints = 5.0f;  
+    protected float healthPoints = 5.0f;  
     [SerializeField]
     private int pointValue = 1;
     private int layerNumber = 0;
@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
     {
         healthPoints= maxHealthPoints;
         layerNumber = this.gameObject.layer;
+        if (sceneloader == null) { return; }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -47,6 +48,8 @@ public class Health : MonoBehaviour
     private void HP_Damaged(Bullet bulletComponent)
     {
         healthPoints -= bulletComponent.GetDamageValue();
+        UpdateHealth_UI(healthPoints);
+
         StartCoroutine(ColorChange(damageColor, timeInterval_Color)); //Damage Indicator                     
         Destroy(bulletComponent.gameObject);
         Debug.Log($"current health of {this.gameObject.name}: {healthPoints}");
@@ -72,9 +75,6 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(timeInterval_Color);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
+    protected abstract void UpdateHealth_UI(float currentHP);
 
-    public float GetMaxHP()
-    { return maxHealthPoints; }
-    public float GetCurrentHP()
-    { return healthPoints; }
 }

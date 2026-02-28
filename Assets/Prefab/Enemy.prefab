@@ -278,7 +278,6 @@ GameObject:
   - component: {fileID: 8115773910234447157}
   - component: {fileID: 1288465501899073670}
   - component: {fileID: 6555370124063131034}
-  - component: {fileID: 4784413819895609815}
   - component: {fileID: 3540279392841761585}
   - component: {fileID: 5605808821089855721}
   m_Layer: 6
@@ -297,7 +296,7 @@ Transform:
   m_GameObject: {fileID: 6984606916662321973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -436,23 +435,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4784413819895609815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6984606916662321973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142a2c6efc485b64dbafbb98d38e3c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealthPoints: 5
-  pointValue: 1
-  timeInterval_Color: 0.15
-  damageColor: {r: 1, g: 0.12641507, b: 0.37479722, a: 1}
-  sceneloader: {fileID: 0}
 --- !u!114 &3540279392841761585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,6 +462,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a57a6525a384964993e750a0d76482c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP_UI
+  maxHealthPoints: 5
+  pointValue: 2
+  timeInterval_Color: 0.15
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  sceneloader: {fileID: 0}
   healthSlider: {fileID: 2390125461919372952}
 --- !u!1 &8118262700964516832
 GameObject:
